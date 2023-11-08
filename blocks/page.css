@@ -1,0 +1,13 @@
+.page {
+  background-color: #000000;
+  min-width: 320px;
+  max-width: 1280px;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 45px 0px 60px 0px;
+}
+
+.page__profile {
+  margin-top: 40px;
+  margin-bottom: 51px;
+}
