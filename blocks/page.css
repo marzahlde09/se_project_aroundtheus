@@ -1,13 +1,31 @@
 .page {
   background-color: #000000;
-  min-width: 320px;
-  max-width: 1280px;
+  width: 100%;
   margin: auto;
   box-sizing: border-box;
-  padding: 45px 0px 60px 0px;
+  padding: 45px 27px 60px 27px;
 }
 
 .page__profile {
   margin-top: 40px;
   margin-bottom: 51px;
+}
+
+.page__gallery {
+  margin-bottom: 67px;
+}
+
+@media screen and (max-width: 800px) {
+  .page {
+    padding: 28px 0px 36px 0px;
+  }
+
+  .page__profile {
+    margin-top: 42px;
+    margin-bottom: 36px;
+  }
+
+  .page__gallery {
+    margin-bottom: 48px;
+  }
 }
