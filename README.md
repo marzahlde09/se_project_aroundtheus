@@ -16,7 +16,7 @@ Around the U.S. is a responsive web page that displays a gallery of scenic photo
 
 ## Link to GitHub Pages
 
-![github-pages-link](https://marzahlde09.github.io/se_project_aroundtheus/)
+[github-pages-link](https://marzahlde09.github.io/se_project_aroundtheus/)
 
 ## Plan on improving the project
 
