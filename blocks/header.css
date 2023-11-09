@@ -1,6 +1,4 @@
 .header {
-  min-height: 56px;
-  max-height: 74px;
   min-width: 320px;
   max-width: 880px;
   width: 100%;
@@ -9,17 +7,22 @@
   justify-content: flex-start;
   align-items: flex-start;
   margin: auto;
+  padding-bottom: 41px;
 }
 
 .header__logo {
-  min-width: 126px;
-  min-height: 24px;
-  max-width: 173px;
-  max-height: 33px;
+  width: 173px;
+  height: 33px;
 }
 
 @media screen and (max-width: 800px) {
+  .header {
+    padding-bottom: 32px;
+  }
+
   .header__logo {
     margin-left: 27px;
+    width: 126px;
+    height: 24px;
   }
 }

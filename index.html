@@ -35,111 +35,83 @@
           <div class="profile__info">
             <div class="profile__header">
               <h1 class="profile__name">Jacques Cousteau</h1>
-              <img
-                src="./images/edit-symbol.svg"
-                alt="Edit button symbol"
-                class="profile__edit-button"
-              />
+              <button class="profile__edit-button" type="button"></button>
             </div>
             <p class="profile__description">Explorer</p>
           </div>
-          <img
-            src="./images/add-symbol.svg"
-            alt="Add button symbol"
-            class="profile__add-button"
-          />
+          <button type="button" class="profile__add-button"></button>
         </section>
         <section class="gallery page__gallery">
-          <div class="card">
-            <img
-              src="./images/yosemite.jpg"
-              alt="Photograph of Yosemite Valley on the river"
-              class="card__image"
-            />
-            <div class="card__content">
-              <p class="card__text">Yosemite Valley</p>
+          <ul class="gallery__cards">
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  src="./images/yosemite.jpg"
+                  alt="Photograph of Yosemite Valley on the river"
+                  class="card__image"
+                />
+              </div>
+              <div class="card__content">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button type="button" class="card__favorite"></button>
+              </div>
+            </li>
+            <li class="card">
               <img
-                src="./images/heart-icon.svg"
-                alt="Heart icon for favoriting photos"
-                class="card__favorite"
+                src="./images/lake-louise.jpg"
+                alt="Photograph of Lake Louise from the lake"
+                class="card__image"
               />
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/lake-louise.jpg"
-              alt="Photograph of Lake Louise from the lake"
-              class="card__image"
-            />
-            <div class="card__content">
-              <p class="card__text">Lake Louise</p>
+              <div class="card__content">
+                <h2 class="card__title">Lake Louise</h2>
+                <button type="button" class="card__favorite"></button>
+              </div>
+            </li>
+            <li class="card">
               <img
-                src="./images/heart-icon.svg"
-                alt="Heart icon for favoriting photos"
-                class="card__favorite"
+                src="./images/bald-mountains.jpg"
+                alt="Photograph of Bald Mountains at sunset above the horizon"
+                class="card__image"
               />
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/bald-mountains.jpg"
-              alt="Photograph of Bald Mountains at sunset above the horizon"
-              class="card__image"
-            />
-            <div class="card__content">
-              <p class="card__text">Bald Mountains</p>
+              <div class="card__content">
+                <h2 class="card__title">Bald Mountains</h2>
+                <button type="button" class="card__favorite"></button>
+              </div>
+            </li>
+            <li class="card">
               <img
-                src="./images/heart-icon.svg"
-                alt="Heart icon for favoriting photos"
-                class="card__favorite"
+                src="./images/latemar.jpg"
+                alt="Photograph of Latemar mountain peaks at night with a starry sky"
+                class="card__image"
               />
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/latemar.jpg"
-              alt="Photograph of Latemar mountain peaks at night with a starry sky"
-              class="card__image"
-            />
-            <div class="card__content">
-              <p class="card__text">Latemar</p>
+              <div class="card__content">
+                <h2 class="card__title">Latemar</h2>
+                <button type="button" class="card__favorite"></button>
+              </div>
+            </li>
+            <li class="card">
               <img
-                src="./images/heart-icon.svg"
-                alt="Heart icon for favoriting photos"
-                class="card__favorite"
+                src="./images/vanoise.jpg"
+                alt="Photograph of mountains in Vanoise National Park from a lake"
+                class="card__image"
               />
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/vanoise.jpg"
-              alt="Photograph of mountains in Vanoise National Park from a lake"
-              class="card__image"
-            />
-            <div class="card__content">
-              <p class="card__text">Vanoise National Park</p>
+              <div class="card__content">
+                <h2 class="card__title">Vanoise National Park</h2>
+                <button type="button" class="card__favorite"></button>
+              </div>
+            </li>
+            <li class="card">
               <img
-                src="./images/heart-icon.svg"
-                alt="Heart icon for favoriting photos"
-                class="card__favorite"
+                src="./images/lago.jpg"
+                alt="Photograph of mountains in Lago di Braies from a lake"
+                class="card__image"
               />
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="./images/lago.jpg"
-              alt="Photograph of mountains in Lago di Braies from a lake"
-              class="card__image"
-            />
-            <div class="card__content">
-              <p class="card__text">Lago di Braies</p>
-              <img
-                src="./images/heart-icon.svg"
-                alt="Heart icon for favoriting photos"
-                class="card__favorite"
-              />
-            </div>
-          </div>
+              <div class="card__content">
+                <h2 class="card__title">Lago di Braies</h2>
+                <button type="button" class="card__favorite"></button>
+              </div>
+            </li>
+          </ul>
         </section>
       </main>
       <footer class="footer">

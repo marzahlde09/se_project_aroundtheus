@@ -14,6 +14,10 @@ Around the U.S. is a responsive web page that displays a gallery of scenic photo
 - Hovering elements
 - Media request
 
+## Link to GitHub Pages
+
+![github-pages-link](https://marzahlde09.github.io/se_project_aroundtheus/)
+
 ## Plan on improving the project
 
 - Favoriting a photo should fill in the heart icon

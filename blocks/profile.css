@@ -31,7 +31,7 @@
 }
 
 .profile__name {
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 2.625em;
@@ -39,14 +39,21 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  max-width: 373px;
 }
 
 .profile__edit-button {
   width: 24px;
   height: 24px;
   box-sizing: border-box;
-  padding: 7px;
+  background-image: url("../images/edit-symbol.svg");
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #000000;
   border: 1px solid #ffffff;
+  cursor: pointer;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .profile__edit-button:hover {
@@ -54,22 +61,31 @@
 }
 
 .profile__description {
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 1.125em;
   line-height: 1.36em;
   margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 415px;
 }
 
 .profile__add-button {
   width: 150px;
   height: 50px;
-  box-sizing: border-box;
-  padding: 14px 64px 14px 64px;
+  background-image: url("../images/add-symbol.svg");
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #000000;
   border: 2px solid #ffffff;
   border-radius: 2px;
   margin-left: auto;
+  cursor: pointer;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .profile__add-button:hover {
@@ -78,7 +94,7 @@
 
 @media screen and (max-width: 800px) {
   .profile {
-    width: 88%;
+    max-width: 88%;
     flex-direction: column;
     align-items: center;
   }
@@ -91,6 +107,7 @@
   .profile__name {
     margin: 0 10px 14px 0;
     font-size: 1.375em;
+    max-width: 196px;
   }
 
   .profile__edit-button {
@@ -101,6 +118,7 @@
 
   .profile__description {
     font-size: 0.875em;
+    max-width: 282px;
   }
 
   .profile__add-button {
