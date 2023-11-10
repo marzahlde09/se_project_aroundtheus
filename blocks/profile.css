@@ -50,7 +50,7 @@
   background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0);
   border: 1px solid #ffffff;
   cursor: pointer;
   transition: opacity 0.4s ease-in-out;
@@ -80,7 +80,7 @@
   background-size: 22px 22px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0);
   border: 2px solid #ffffff;
   border-radius: 2px;
   margin-left: auto;
@@ -113,7 +113,7 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    padding: 5.25px;
+    background-size: 7.5px 7.5px;
   }
 
   .profile__description {
@@ -124,7 +124,7 @@
   .profile__add-button {
     width: 100%;
     box-sizing: border-box;
-    padding: 17px 132px 17px 132px;
     margin-top: 36px;
+    background-size: 16px 16px;
   }
 }
