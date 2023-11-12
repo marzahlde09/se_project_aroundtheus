@@ -42,6 +42,7 @@ const profileModalDescription = editProfileModal.querySelector(
 const profileModalSubmitButton =
   editProfileModal.querySelector(".form__submit");
 const cardGallery = document.querySelector(".gallery__cards");
+const cardTemplate = document.querySelector("#card").content;
 
 editButton.addEventListener("click", function () {
   profileModalName.value = profileName.textContent;
@@ -50,7 +51,9 @@ editButton.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 
-profileModalCloseButton.addEventListener("click", closeModal(editProfileModal));
+profileModalCloseButton.addEventListener("click", function () {
+  closeModal(editProfileModal);
+});
 
 editProfileModal.addEventListener("submit", submitProfileForm);
 
@@ -74,7 +77,6 @@ function submitProfileForm(event) {
 }
 
 function getCardElement(data) {
-  let cardTemplate = document.querySelector("#card").content;
   let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
   let cardImageLink = data.link;

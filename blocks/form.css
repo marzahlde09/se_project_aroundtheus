@@ -34,6 +34,10 @@
   border: none;
 }
 
+.form__close-button:hover {
+  opacity: 0.6;
+}
+
 .form__title {
   max-width: 330px;
   font-family: "Inter", Arial, sans-serif;
