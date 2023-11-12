@@ -47,19 +47,21 @@
         <section class="modal">
           <div class="modal__container">
             <button type="button" class="modal__close-button"></button>
-            <form class="form">
+            <form class="form" id="profile-form">
               <h2 class="form__title">Edit profle</h2>
               <input
                 type="text"
                 name="name"
                 value=""
-                class="form__field form__field_type_name"
+                class="form__field"
+                required
               />
               <input
                 type="text"
                 name="description"
                 value=""
-                class="form__field form__field_type_description"
+                class="form__field"
+                required
               />
               <button type="submit" class="form__submit">Save</button>
             </form>
@@ -79,6 +81,6 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

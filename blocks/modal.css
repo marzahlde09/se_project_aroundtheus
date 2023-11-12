@@ -7,12 +7,12 @@
   background-color: rgba(0, 0, 0, 0.5);
   margin: auto;
   display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal_opened {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .modal__container {

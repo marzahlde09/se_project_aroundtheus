@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -25,60 +25,69 @@ let initialCards = [
   },
 ];
 
+const modalBlock = document.querySelector(".modal");
 const editButton = document.querySelector(".profile__edit-button");
 const closeButton = document.querySelector(".modal__close-button");
-const modalBlock = document.querySelector(".modal");
-const editSubmitButton = document.querySelector(".form__submit");
+const editProfileModal = document.querySelector("#profile-form");
+const editSubmitButton = editProfileModal.querySelector(".form__submit");
 const cardGallery = document.querySelector(".gallery__cards");
+const profileFormName = editProfileModal.querySelector(
+  ".form__field:first-of-type"
+);
+const profileFormDescription = editProfileModal.querySelector(
+  ".form__field:last-of-type"
+);
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
 
 editButton.addEventListener("click", function () {
-  let formName = document.querySelector(".form__field_type_name");
-  let formDescription = document.querySelector(".form__field_type_description");
+  let formName = document.querySelector(".form__field:first-of-type");
+  let formDescription = document.querySelector(".form__field:last-of-type");
 
   let profileName = document.querySelector(".profile__name");
   let profileDescription = document.querySelector(".profile__description");
 
-  formName.value = profileName.innerHTML;
-  formDescription.value = profileDescription.innerHTML;
+  formName.value = profileName.textContent;
+  formDescription.value = profileDescription.textContent;
 
-  modalBlock.classList.add("modal_opened");
+  openModal(editProfileModal);
 });
 
 closeButton.addEventListener("click", function () {
-  let formName = document.querySelector(".form__field_type_name");
-  let formDescription = document.querySelector(".form__field_type_description");
-
-  modalBlock.classList.remove("modal_opened");
-
-  formName.value = "";
-  formDescription.value = "";
+  closeModal(editProfileModal);
 });
 
-editSubmitButton.addEventListener("click", function (event) {
+editProfileModal.addEventListener("submit", submitProfileForm);
+
+function openModal(modal) {
+  modalBlock.classList.add("modal_opened");
+  modal.classList.add("form_active");
+}
+
+function closeModal(modal) {
+  modalBlock.classList.remove("modal_opened");
+  modal.classList.remove("form_active");
+}
+
+function submitProfileForm(event) {
   event.preventDefault();
 
-  let formName = document.querySelector(".form__field_type_name");
-  let formDescription = document.querySelector(".form__field_type_description");
+  profileName.textContent = profileFormName.value;
+  profileDescription.textContent = profileFormDescription.value;
 
-  let profileName = document.querySelector(".profile__name");
-  let profileDescription = document.querySelector(".profile__description");
-
-  profileName.innerHTML = formName.value;
-  profileDescription.innerHTML = formDescription.value;
-
-  formName.value = "";
-  formDescription.value = "";
-
-  modalBlock.classList.remove("modal_opened");
-});
+  closeModal(editProfileModal);
+}
 
 function getCardElement(data) {
   let cardTemplate = document.querySelector("#card").content;
   let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
-  cardElement.querySelector(".card__image").src = data.link;
-  cardElement.querySelector(".card__image").alt = data.name;
-  cardElement.querySelector(".card__title").innerHTML = data.name;
+  let cardImageLink = data.link;
+  let cardName = data.name;
+
+  cardElement.querySelector(".card__image").src = cardImageLink;
+  cardElement.querySelector(".card__image").alt = cardName;
+  cardElement.querySelector(".card__title").textContent = cardName;
 
   return cardElement;
 }

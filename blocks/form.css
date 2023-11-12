@@ -1,5 +1,5 @@
 .form {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 34px 36px 36.5px 36px;
   align-content: flex-start;
@@ -7,6 +7,10 @@
   background-color: #ffffff;
   width: 430px;
   box-sizing: border-box;
+}
+
+.form_active {
+  display: flex;
 }
 
 .form__title {
@@ -26,11 +30,11 @@
   width: 100%;
 }
 
-.form__field_type_name {
+.form__field:first-of-type {
   margin-top: 54px;
 }
 
-.form__field_type_description {
+.form__field:last-of-type {
   margin-top: 30px;
 }
 
@@ -61,7 +65,7 @@
     max-width: 238px;
   }
 
-  .form__field_type_name {
+  .form__field:first-of-type {
     margin-top: 75px;
   }
 
