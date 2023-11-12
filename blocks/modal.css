@@ -15,26 +15,8 @@
   display: flex;
 }
 
-.modal__container {
+.modal__form {
   margin: auto;
-  position: relative;
-}
-
-.modal__close-button {
-  cursor: pointer;
-  position: absolute;
-  top: -48.28px;
-  right: -48.28px;
-  transform: rotate(45deg);
-  background-image: url(../images/add-symbol.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 40px;
-  width: 40px;
-  background-color: rgba(0, 0, 0, 0);
-  transition: opacity 0.4s ease-in-out;
-  border: none;
 }
 
 .modal__close-button:hover {

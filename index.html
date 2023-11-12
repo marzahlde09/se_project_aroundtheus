@@ -45,27 +45,25 @@
           <ul class="gallery__cards"></ul>
         </section>
         <section class="modal">
-          <div class="modal__container">
-            <button type="button" class="modal__close-button"></button>
-            <form class="form" id="profile-form">
-              <h2 class="form__title">Edit profle</h2>
-              <input
-                type="text"
-                name="name"
-                value=""
-                class="form__field"
-                required
-              />
-              <input
-                type="text"
-                name="description"
-                value=""
-                class="form__field"
-                required
-              />
-              <button type="submit" class="form__submit">Save</button>
-            </form>
-          </div>
+          <form class="form form_type_profile modal__form">
+            <button type="button" class="form__close-button"></button>
+            <h2 class="form__title">Edit profle</h2>
+            <input
+              type="text"
+              name="name"
+              value=""
+              class="form__field"
+              required
+            />
+            <input
+              type="text"
+              name="description"
+              value=""
+              class="form__field"
+              required
+            />
+            <button type="submit" class="form__submit">Save</button>
+          </form>
         </section>
       </main>
       <footer class="footer">

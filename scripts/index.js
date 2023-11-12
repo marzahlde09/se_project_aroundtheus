@@ -26,36 +26,31 @@ const initialCards = [
 ];
 
 const modalBlock = document.querySelector(".modal");
-const editButton = document.querySelector(".profile__edit-button");
-const closeButton = document.querySelector(".modal__close-button");
-const editProfileModal = document.querySelector("#profile-form");
-const editSubmitButton = editProfileModal.querySelector(".form__submit");
-const cardGallery = document.querySelector(".gallery__cards");
-const profileFormName = editProfileModal.querySelector(
-  ".form__field:first-of-type"
-);
-const profileFormDescription = editProfileModal.querySelector(
-  ".form__field:last-of-type"
-);
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
+const editButton = document.querySelector(".profile__edit-button");
+const editProfileModal = document.querySelector(".form_type_profile");
+const profileModalCloseButton = editProfileModal.querySelector(
+  ".form__close-button"
+);
+const profileModalName = editProfileModal.querySelector(
+  ".form__field:first-of-type"
+);
+const profileModalDescription = editProfileModal.querySelector(
+  ".form__field:last-of-type"
+);
+const profileModalSubmitButton =
+  editProfileModal.querySelector(".form__submit");
+const cardGallery = document.querySelector(".gallery__cards");
 
 editButton.addEventListener("click", function () {
-  let formName = document.querySelector(".form__field:first-of-type");
-  let formDescription = document.querySelector(".form__field:last-of-type");
-
-  let profileName = document.querySelector(".profile__name");
-  let profileDescription = document.querySelector(".profile__description");
-
-  formName.value = profileName.textContent;
-  formDescription.value = profileDescription.textContent;
+  profileModalName.value = profileName.textContent;
+  profileModalDescription.value = profileDescription.textContent;
 
   openModal(editProfileModal);
 });
 
-closeButton.addEventListener("click", function () {
-  closeModal(editProfileModal);
-});
+profileModalCloseButton.addEventListener("click", closeModal(editProfileModal));
 
 editProfileModal.addEventListener("submit", submitProfileForm);
 
@@ -72,8 +67,8 @@ function closeModal(modal) {
 function submitProfileForm(event) {
   event.preventDefault();
 
-  profileName.textContent = profileFormName.value;
-  profileDescription.textContent = profileFormDescription.value;
+  profileName.textContent = profileModalName.value;
+  profileDescription.textContent = profileModalDescription.value;
 
   closeModal(editProfileModal);
 }
