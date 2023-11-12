@@ -42,74 +42,7 @@
           <button type="button" class="profile__add-button"></button>
         </section>
         <section class="gallery page__gallery">
-          <ul class="gallery__cards">
-            <li class="card">
-              <img
-                src="./images/yosemite.jpg"
-                alt="Photograph of Yosemite Valley on the river"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button type="button" class="card__favorite"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="Photograph of Lake Louise from the lake"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Lake Louise</h2>
-                <button type="button" class="card__favorite"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/bald-mountains.jpg"
-                alt="Photograph of Bald Mountains at sunset above the horizon"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button type="button" class="card__favorite"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/latemar.jpg"
-                alt="Photograph of Latemar mountain peaks at night with a starry sky"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Latemar</h2>
-                <button type="button" class="card__favorite"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/vanoise.jpg"
-                alt="Photograph of mountains in Vanoise National Park from a lake"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button type="button" class="card__favorite"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lago.jpg"
-                alt="Photograph of mountains in Lago di Braies from a lake"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button type="button" class="card__favorite"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="gallery__cards"></ul>
         </section>
         <section class="modal">
           <div class="modal__container">
@@ -118,12 +51,14 @@
               <h2 class="form__title">Edit profle</h2>
               <input
                 type="text"
-                value="Jacques Cousteau"
+                name="name"
+                value=""
                 class="form__field form__field_type_name"
               />
               <input
                 type="text"
-                value="Explorer"
+                name="description"
+                value=""
                 class="form__field form__field_type_description"
               />
               <button type="submit" class="form__submit">Save</button>
@@ -135,6 +70,15 @@
         <p class="footer__text">© 2022 Around The U.S.</p>
       </footer>
     </div>
+    <template id="card">
+      <li class="card">
+        <img src="" alt="" class="card__image" />
+        <div class="card__content">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__favorite"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
