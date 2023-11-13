@@ -77,10 +77,10 @@ function submitProfileForm(event) {
 }
 
 function getCardElement(data) {
-  let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
-  let cardImageLink = data.link;
-  let cardName = data.name;
+  const cardImageLink = data.link;
+  const cardName = data.name;
 
   cardElement.querySelector(".card__image").src = cardImageLink;
   cardElement.querySelector(".card__image").alt = cardName;
