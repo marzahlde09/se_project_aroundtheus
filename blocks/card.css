@@ -50,3 +50,7 @@
 .card__favorite:hover {
   opacity: 0.5;
 }
+
+.card__favorite_active {
+  background-image: url("../images/heart-icon-filled.svg");
+}

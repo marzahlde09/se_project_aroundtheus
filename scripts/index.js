@@ -103,6 +103,9 @@ function submitAddForm(event) {
   cardElement.querySelector(".card__image").src = cardImageLink;
   cardElement.querySelector(".card__image").alt = cardName;
   cardElement.querySelector(".card__title").textContent = cardName;
+  cardElement
+    .querySelector(".card__favorite")
+    .addEventListener("click", toggleFavorite);
 
   cardGallery.prepend(cardElement);
 }
@@ -116,8 +119,15 @@ function getCardElement(data) {
   cardElement.querySelector(".card__image").src = cardImageLink;
   cardElement.querySelector(".card__image").alt = cardName;
   cardElement.querySelector(".card__title").textContent = cardName;
+  cardElement
+    .querySelector(".card__favorite")
+    .addEventListener("click", toggleFavorite);
 
   return cardElement;
+}
+
+function toggleFavorite(event) {
+  event.target.classList.toggle("card__favorite_active");
 }
 
 initialCards.forEach((card) => cardGallery.append(getCardElement(card)));
