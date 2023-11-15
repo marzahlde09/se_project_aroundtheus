@@ -106,6 +106,9 @@ function submitAddForm(event) {
   cardElement
     .querySelector(".card__favorite")
     .addEventListener("click", toggleFavorite);
+  cardElement
+    .querySelector(".card__delete")
+    .addEventListener("click", () => cardElement.remove());
 
   cardGallery.prepend(cardElement);
 }
@@ -122,6 +125,9 @@ function getCardElement(data) {
   cardElement
     .querySelector(".card__favorite")
     .addEventListener("click", toggleFavorite);
+  cardElement
+    .querySelector(".card__delete")
+    .addEventListener("click", () => cardElement.remove());
 
   return cardElement;
 }

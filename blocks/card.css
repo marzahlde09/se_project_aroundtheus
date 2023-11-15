@@ -6,6 +6,27 @@
   align-items: center;
   background-color: #ffffff;
   max-height: 361px;
+  position: relative;
+}
+
+.card__delete {
+  cursor: pointer;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  background-image: url(../images/trash.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 19.3px;
+  width: 18px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity 0.4s ease-in-out;
+  border: none;
+}
+
+.card__delete:hover {
+  opacity: 0.6;
 }
 
 .card__image {
