@@ -89,6 +89,4 @@ function getCardElement(data) {
   return cardElement;
 }
 
-for (let card of initialCards) {
-  cardGallery.append(getCardElement(card));
-}
+initialCards.forEach((card) => cardGallery.append(getCardElement(card)));
