@@ -6,13 +6,17 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   margin: auto;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s linear;
   justify-content: center;
   align-items: center;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__form {
