@@ -19,10 +19,6 @@
   opacity: 1;
 }
 
-.modal__form {
-  margin: auto;
-}
-
 .modal__close-button {
   cursor: pointer;
   position: absolute;
@@ -62,6 +58,7 @@
   position: relative;
   padding: 34px 36px 36.5px 36px;
   width: 430px;
+  margin: auto;
 }
 
 .modal__form_type_add {
