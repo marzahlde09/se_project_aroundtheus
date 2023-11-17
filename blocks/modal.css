@@ -9,7 +9,7 @@
   display: flex;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 1s, opacity 1s linear;
+  transition: visibility 0.4s, opacity 0.4s linear;
   justify-content: center;
   align-items: center;
 }
