@@ -57,16 +57,24 @@
               placeholder="Name"
               value=""
               class="modal__form-field"
+              minlength="2"
+              maxlength="40"
               required
             />
+            <span class="modal__form-input-error name-input-error"></span>
             <input
               type="text"
               name="description"
               placeholder="Description"
               value=""
               class="modal__form-field"
+              minlength="2"
+              maxlength="200"
               required
             />
+            <span
+              class="modal__form-input-error description-input-error"
+            ></span>
             <button type="submit" class="modal__form-submit">Save</button>
           </form>
         </section>
@@ -83,16 +91,20 @@
               placeholder="Title"
               value=""
               class="modal__form-field"
+              minlength="1"
+              maxlength="30"
               required
             />
+            <span class="modal__form-input-error title-input-error"></span>
             <input
-              type="text"
+              type="url"
               name="link"
               placeholder="Image Link"
               value=""
               class="modal__form-field"
               required
             />
+            <span class="modal__form-input-error link-input-error"></span>
             <button type="submit" class="modal__form-submit">Create</button>
           </form>
         </section>
