@@ -155,6 +155,7 @@ function closeOnOverlayClick(evt) {
 
 function closeOnEscape(evt) {
   if (evt.key === "Escape") {
-    closeModal(document.querySelector(".modal_opened"));
+    const openedModal = document.querySelector(".modal_opened");
+    openedModal && closeModal(openedModal);
   }
 }
