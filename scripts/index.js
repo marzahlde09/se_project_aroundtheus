@@ -58,15 +58,6 @@ editButton.addEventListener("click", function () {
   profileFormName.value = profileName.textContent;
   profileFormDescription.value = profileDescription.textContent;
 
-  /*const inputList = Array.from(
-    profileForm.querySelectorAll(".modal__form-field")
-  );
-  const buttonElement = profileForm.querySelector(".modal__form-submit");
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
-    checkInputValidity(profileForm, inputElement);
-  });*/
-
   openModal(profileForm);
 });
 
@@ -80,14 +71,14 @@ cardForm.addEventListener("submit", submitAddForm);
 
 function openModal(modal) {
   modal.closest(".modal").classList.add("modal_opened");
-  document.addEventListener("mousedown", alternativeModalClose);
-  document.addEventListener("keydown", alternativeModalClose);
+  document.addEventListener("mousedown", closeOnOverlayClick);
+  document.addEventListener("keydown", closeOnEscape);
 }
 
 function closeModal(modal) {
   modal.closest(".modal").classList.remove("modal_opened");
-  document.removeEventListener("mousedown", alternativeModalClose);
-  document.removeEventListener("keydown", alternativeModalClose);
+  document.removeEventListener("mousedown", closeOnOverlayClick);
+  document.removeEventListener("keydown", closeOnEscape);
 }
 
 function submitProfileForm(event) {
@@ -112,6 +103,7 @@ function submitAddForm(event) {
 
   event.target.reset();
   cardFormCreateButton.disabled = true;
+  cardFormCreateButton.classList.add("modal__form-submit_disabled");
   closeModal(event.target);
 }
 
@@ -155,9 +147,14 @@ closeButtons.forEach((button) => {
 
 initialCards.forEach((card) => cardGallery.append(getCardElement(card)));
 
-function alternativeModalClose(evt) {
-  const currentPopUp = document.querySelector(".modal_opened");
-  if (evt.key === "Escape" || evt.target === currentPopUp) {
-    closeModal(currentPopUp);
+function closeOnOverlayClick(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closeModal(evt.target);
+  }
+}
+
+function closeOnEscape(evt) {
+  if (evt.key === "Escape") {
+    closeModal(document.querySelector(".modal_opened"));
   }
 }
