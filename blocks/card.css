@@ -56,7 +56,7 @@
   max-width: 219px;
 }
 
-.card__favorite {
+.card__like {
   width: 21px;
   height: 18px;
   background-image: url("../images/heart-icon.svg");
@@ -69,10 +69,10 @@
   transition: opacity 0.4s ease-in-out;
 }
 
-.card__favorite:hover {
+.card__like:hover {
   opacity: 0.5;
 }
 
-.card__favorite_active {
+.card__like_active {
   background-image: url("../images/heart-icon-filled.svg");
 }

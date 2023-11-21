@@ -129,10 +129,6 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function toggleLike(event) {
-  event.target.classList.toggle("card__favorite_active");
-}
-
 function openPictureModal(link, name) {
   pictureModalImage.src = link;
   pictureModalImage.alt = name;
