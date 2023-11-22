@@ -1,0 +1,49 @@
+.picture {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  position: relative;
+  max-width: 75vw;
+}
+
+.picture__close-button {
+  cursor: pointer;
+  position: absolute;
+  transform: rotate(45deg);
+  background-image: url(../images/add-symbol.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity 0.4s ease-in-out;
+  border: none;
+  top: -49px;
+  right: -49.57px;
+}
+
+.picture__close-button:hover {
+  opacity: 0.6;
+}
+
+.picture__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.picture__description {
+  font-size: 0.75em;
+  font-family: "Inter", Arial, sans-serif;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .picture__close-button {
+    top: -36px;
+    right: -36.43px;
+    height: 30px;
+    width: 30px;
+  }
+}

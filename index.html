@@ -44,78 +44,67 @@
         <section class="gallery page__gallery">
           <ul class="gallery__cards"></ul>
         </section>
-        <section class="modal">
-          <form class="modal__form" name="profile-form">
-            <button
-              type="button"
-              class="modal__close-button modal__close-button_type_form"
-            ></button>
-            <h2 class="modal__form-title">Edit profle</h2>
+        <section class="popup">
+          <form class="form popup__form" name="profile-form">
+            <button type="button" class="form__close-button"></button>
+            <h2 class="form__title">Edit profle</h2>
             <input
               type="text"
               name="name"
               placeholder="Name"
               value=""
-              class="modal__form-field"
+              class="form__field"
               minlength="2"
               maxlength="40"
               required
             />
-            <span class="modal__form-input-error name-input-error"></span>
+            <span class="form__input-error name-input-error"></span>
             <input
               type="text"
               name="description"
               placeholder="Description"
               value=""
-              class="modal__form-field"
+              class="form__field"
               minlength="2"
               maxlength="200"
               required
             />
-            <span
-              class="modal__form-input-error description-input-error"
-            ></span>
-            <button type="submit" class="modal__form-submit">Save</button>
+            <span class="form__input-error description-input-error"></span>
+            <button type="submit" class="form__submit">Save</button>
           </form>
         </section>
-        <section class="modal">
-          <form class="modal__form" name="card-form">
-            <button
-              type="button"
-              class="modal__close-button modal__close-button_type_form"
-            ></button>
-            <h2 class="modal__form-title">New place</h2>
+        <section class="popup">
+          <form class="form popup__form" name="card-form">
+            <button type="button" class="form__close-button"></button>
+            <h2 class="form__title">New place</h2>
             <input
               type="text"
               name="title"
               placeholder="Title"
               value=""
-              class="modal__form-field"
+              class="form__field"
               minlength="1"
               maxlength="30"
               required
             />
-            <span class="modal__form-input-error title-input-error"></span>
+            <span class="form__input-error title-input-error"></span>
             <input
               type="url"
               name="link"
               placeholder="Image Link"
               value=""
-              class="modal__form-field"
+              class="form__field"
               required
             />
-            <span class="modal__form-input-error link-input-error"></span>
-            <button type="submit" class="modal__form-submit">Create</button>
+            <span class="form__input-error link-input-error"></span>
+            <button type="submit" class="form__submit">Create</button>
           </form>
         </section>
-        <section class="modal">
-          <figure class="modal__picture">
-            <button
-              type="button"
-              class="modal__close-button modal__close-button_type_picture"
-            ></button>
-            <img src="#" alt="" class="modal__picture-image" />
-            <figcaption class="modal__picture-description"></figcaption>
+        <section class="popup">
+          <figure class="picture popup__picture">
+            <button type="button" class="picture__close-button"></button>
+            <img src="#" alt="" class="picture__image" />
+            <figcaption class="picture__description"></figcaption>
           </figure>
         </section>
       </main>
@@ -123,7 +112,7 @@
         <p class="footer__text">© 2022 Around The U.S.</p>
       </footer>
     </div>
-    <template id="card">
+    <template class="card-template">
       <li class="card">
         <button type="button" class="card__delete"></button>
         <img src="" alt="" class="card__image" />
@@ -133,7 +122,8 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/index.js" defer></script>
-    <script src="./scripts/validate.js" defer></script>
+    <script type="module" src="./pages/index.js" defer></script>
+    <script type="module" src="./components/Card.js" defer></script>
+    <script type="module" src="./components/FormValidator.js" defer></script>
   </body>
 </html>
