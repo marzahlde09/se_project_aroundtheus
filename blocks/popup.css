@@ -22,3 +22,52 @@
 .popup__form {
   margin: 0 auto 0 auto;
 }
+
+.popup__picture {
+  margin: 0 auto 0 auto;
+}
+
+.popup__close-button {
+  cursor: pointer;
+  position: absolute;
+  transform: rotate(45deg);
+  background-image: url(../images/add-symbol.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity 0.4s ease-in-out;
+  border: none;
+}
+
+.popup__close-button_type_form {
+  top: -48.28px;
+  right: -48.28px;
+}
+
+.popup__close-button_type_picture {
+  top: -49px;
+  right: -49.57px;
+}
+
+.popup__close-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 800px) {
+  .popup__close-button_type_form {
+    top: -39.23px;
+    right: 2.23px;
+    height: 26px;
+    width: 26px;
+  }
+
+  .popup__close-button_type_picture {
+    top: -36px;
+    right: -36.43px;
+    height: 30px;
+    width: 30px;
+  }
+}

@@ -47,20 +47,14 @@ const cardGallery = document.querySelector(".gallery__cards");
 const profileForm = document.forms["profile-form"];
 const profileFormName = profileForm.elements["name"];
 const profileFormDescription = profileForm.elements["description"];
-const profileFormSubmit = profileForm.querySelector(".form__submit");
 const cardForm = document.forms["card-form"];
-const cardFormTitle = cardForm.elements["name"];
-const cardFormLink = cardForm.elements["link"];
-const cardFormSubmit = cardForm.querySelector(".form__submit");
-const formCloseButtons = document.querySelectorAll(".form__close-button");
-const picturePopupCloseButton = document.querySelector(
-  ".picture__close-button"
-);
+const closeButtons = document.querySelectorAll(".popup__close-button");
 
 /* **************************** */
 /* Add form validation to forms */
 /* **************************** */
 const formSettings = {
+  formSelector: ".form",
   inputSelector: ".form__field",
   submitButtonSelector: ".form__submit",
   inactiveButtonClass: "form__submit_disabled",
@@ -68,11 +62,21 @@ const formSettings = {
   errorClass: "form__input-error_active",
 };
 
-const profileFormValidation = new FormValidator(formSettings, profileForm);
-profileFormValidation.enableValidation();
+const formValidators = {};
 
-const cardFormValidation = new FormValidator(formSettings, cardForm);
-cardFormValidation.enableValidation();
+const enableValidation = (formSettings) => {
+  const formList = Array.from(
+    document.querySelectorAll(formSettings.formSelector)
+  );
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formSettings, formElement);
+    const formName = formElement.getAttribute("name");
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(formSettings);
 
 /* ********************************* */
 /* Event listeners for opening forms */
@@ -81,12 +85,12 @@ editButton.addEventListener("click", function () {
   profileFormName.value = profileName.textContent;
   profileFormDescription.value = profileDescription.textContent;
 
-  profileFormValidation.disableButton();
+  formValidators["profile-form"].resetValidation();
   openPopup(profileForm);
 });
 
 addButton.addEventListener("click", function () {
-  cardFormValidation.resetValidation();
+  formValidators["card-form"].resetValidation();
   openPopup(cardForm);
 });
 
@@ -143,11 +147,10 @@ const submitCardForm = function (evt) {
     name: evt.target.title.value,
     link: evt.target.link.value,
   };
-  const card = new Card(cardData, ".card-template", openPicturePopup);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(cardData);
   cardGallery.prepend(cardElement);
   evt.target.reset();
-  cardFormValidation.disableButton();
+  formValidators["card-form"].disableButton();
   closePopup(evt.target);
 };
 
@@ -160,16 +163,20 @@ cardForm.addEventListener("submit", submitCardForm);
 /* ********************************* */
 /* Event listeners for close buttons */
 /* ********************************* */
-formCloseButtons.forEach((button) => {
+closeButtons.forEach((button) => {
   const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
 });
-picturePopupCloseButton.addEventListener("click", () =>
-  closePopup(picturePopup)
-);
 
-initialCards.forEach((cardData) => {
-  const card = new Card(cardData, ".card-template", openPicturePopup);
-  const cardElement = card.generateCard();
+/* ****************************************************** */
+/* Function for creating cards and intial card generation */
+/* ****************************************************** */
+const createCard = function (data) {
+  const card = new Card(data, ".card-template", openPicturePopup);
+  return card.generateCard();
+};
+
+initialCards.forEach((data) => {
+  const cardElement = createCard(data);
   cardGallery.append(cardElement);
 });

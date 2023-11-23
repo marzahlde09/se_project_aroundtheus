@@ -10,27 +10,6 @@
   width: 430px;
 }
 
-.form__close-button {
-  cursor: pointer;
-  position: absolute;
-  transform: rotate(45deg);
-  background-image: url(../images/add-symbol.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 40px;
-  width: 40px;
-  background-color: rgba(0, 0, 0, 0);
-  transition: opacity 0.4s ease-in-out;
-  border: none;
-  top: -48.28px;
-  right: -48.28px;
-}
-
-.form__close-button:hover {
-  opacity: 0.6;
-}
-
 .form__title {
   max-width: 330px;
   font-family: "Inter", Arial, sans-serif;
@@ -100,13 +79,6 @@
 @media screen and (max-width: 800px) {
   .form {
     width: 282px;
-  }
-
-  .form__close-button {
-    top: -39.23px;
-    right: 2.23px;
-    height: 26px;
-    width: 26px;
   }
 
   .form__title {
