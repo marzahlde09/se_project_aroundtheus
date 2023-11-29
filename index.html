@@ -37,7 +37,7 @@
               <h1 class="profile__name">Jacques Cousteau</h1>
               <button class="profile__edit-button" type="button"></button>
             </div>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__job">Explorer</p>
           </div>
           <button type="button" class="profile__add-button"></button>
         </section>
@@ -64,15 +64,15 @@
             <span class="form__input-error name-input-error"></span>
             <input
               type="text"
-              name="description"
-              placeholder="Description"
+              name="job"
+              placeholder="Job"
               value=""
               class="form__field"
               minlength="2"
               maxlength="200"
               required
             />
-            <span class="form__input-error description-input-error"></span>
+            <span class="form__input-error job-input-error"></span>
             <button type="submit" class="form__submit">Save</button>
           </form>
         </section>
@@ -85,15 +85,15 @@
             <h2 class="form__title">New place</h2>
             <input
               type="text"
-              name="title"
-              placeholder="Title"
+              name="name"
+              placeholder="Name"
               value=""
               class="form__field"
               minlength="1"
               maxlength="30"
               required
             />
-            <span class="form__input-error title-input-error"></span>
+            <span class="form__input-error name-input-error"></span>
             <input
               type="url"
               name="link"
@@ -126,7 +126,7 @@
         <button type="button" class="card__delete"></button>
         <img src="" alt="" class="card__image" />
         <div class="card__content">
-          <h2 class="card__title"></h2>
+          <h2 class="card__name"></h2>
           <button type="button" class="card__like"></button>
         </div>
       </li>
@@ -134,5 +134,11 @@
     <script type="module" src="./pages/index.js" defer></script>
     <script type="module" src="./components/Card.js" defer></script>
     <script type="module" src="./components/FormValidator.js" defer></script>
+    <script type="module" src="./components/Popup.js" defer></script>
+    <script type="module" src="./components/PopupWithForm.js" defer></script>
+    <script type="module" src="./components/PopupWithImage.js" defer></script>
+    <script type="module" src="./components/Section.js" defer></script>
+    <script type="module" src="./components/UserInfo.js" defer></script>
+    <script type="module" src="./utils/constants.js" defer></script>
   </body>
 </html>
