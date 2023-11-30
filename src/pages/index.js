@@ -37,7 +37,7 @@ enableValidation(formSettings);
 /* ****************************** */
 /* Declaration of UserInfo object */
 /* ****************************** */
-const userInfo = new UserInfo(initialUserData, {
+const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__job",
 });
@@ -46,10 +46,7 @@ const userInfo = new UserInfo(initialUserData, {
 /* Declarations of popups */
 /* ********************** */
 const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
-  console.log(data);
   cardGallery.addItem(data);
-  cardForm.formElement.reset();
-  formValidators["card-form"].disableButton();
   cardForm.close();
 });
 cardForm.setEventListeners();

@@ -13,9 +13,14 @@ export default class PopupWithForm extends Popup {
     );
     const data = {};
     inputFields.forEach((field) => {
-      data[`${field.name}`] = field.value;
+      data[field.name] = field.value;
     });
     return data;
+  }
+
+  close() {
+    super.close();
+    this.formElement.reset();
   }
 
   setEventListeners() {
