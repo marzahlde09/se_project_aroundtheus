@@ -12,7 +12,6 @@
       name="keywords"
       content="Nature, Vacation, Jacques, Cousteau, U.S., Explorer, Photography, Landscape"
     />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="favicon.ico" />
     <title>Around the US</title>
   </head>
@@ -20,7 +19,7 @@
     <div class="page">
       <header class="header">
         <img
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around The U.S. logo"
           class="header__logo"
         />
@@ -28,7 +27,7 @@
       <main>
         <section class="profile page__profile">
           <img
-            src="./images/jacques-cousteau.png"
+            src="<%=require('./images/jacques-cousteau.png')%>"
             alt="Jacques Cousteau portrait"
             class="profile__avatar"
           />
@@ -131,14 +130,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./pages/index.js" defer></script>
-    <script type="module" src="./components/Card.js" defer></script>
-    <script type="module" src="./components/FormValidator.js" defer></script>
-    <script type="module" src="./components/Popup.js" defer></script>
-    <script type="module" src="./components/PopupWithForm.js" defer></script>
-    <script type="module" src="./components/PopupWithImage.js" defer></script>
-    <script type="module" src="./components/Section.js" defer></script>
-    <script type="module" src="./components/UserInfo.js" defer></script>
-    <script type="module" src="./utils/constants.js" defer></script>
   </body>
 </html>

@@ -13,6 +13,7 @@ import {
   profileFormName,
   profileFormJob,
 } from "../utils/constants.js";
+import "./index.css";
 
 /* **************************** */
 /* Add form validation to forms */
