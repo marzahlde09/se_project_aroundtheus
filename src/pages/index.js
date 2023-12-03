@@ -4,6 +4,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import {
   initialCards,
   formSettings,
@@ -34,12 +35,25 @@ const enableValidation = (formSettings) => {
 
 enableValidation(formSettings);
 
+/* ************************* */
+/* Declaration of Api object */
+/* ************************* */
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "a0548a22-3cdf-48eb-9822-7e7daf1b0604",
+    "Content-Type": "application/json",
+  },
+});
+api.getUserInfo();
+
 /* ****************************** */
 /* Declaration of UserInfo object */
 /* ****************************** */
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__job",
+  avatarSelector: ".profile__avatar",
 });
 
 /* ********************** */
