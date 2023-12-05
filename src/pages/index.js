@@ -45,7 +45,6 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-api.getUserInfo();
 
 /* ****************************** */
 /* Declaration of UserInfo object */
@@ -66,7 +65,19 @@ const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
 cardForm.setEventListeners();
 
 const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
-  userInfo.setUserInfo(data);
+  api
+    .editUserInfo(data)
+    .then((res) => (res.ok ? true : res.status))
+    .then(() => {
+      api
+        .getUserInfo()
+        .then((res) => (res.ok ? res.json() : res.status))
+        .then((res) => {
+          userInfo.setUserInfo(res);
+        })
+        .catch((err) => console.error(err));
+    })
+    .catch((err) => console.error(err));
   profileForm.close();
 });
 profileForm.setEventListeners();
