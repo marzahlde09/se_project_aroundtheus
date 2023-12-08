@@ -2,11 +2,12 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupDeleteConfirmation from "../components/PopupDeleteConfirmation.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import {
-  initialCards,
+  /*initialCards,*/
   formSettings,
   initialUserData,
   editButton,
@@ -40,10 +41,7 @@ enableValidation(formSettings);
 /* ************************* */
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "a0548a22-3cdf-48eb-9822-7e7daf1b0604",
-    "Content-Type": "application/json",
-  },
+  authorization: "a0548a22-3cdf-48eb-9822-7e7daf1b0604",
 });
 
 /* ****************************** */
@@ -59,14 +57,20 @@ const userInfo = new UserInfo({
 /* Declarations of popups */
 /* ********************** */
 const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
-  cardGallery.addItem(data);
-  cardForm.close();
+  api
+    .addNewCard({ name: data.name, link: data.link })
+    .then((res) => (res.ok ? true : res.status))
+    .then(() => {
+      cardGallery.addItem(data);
+      cardForm.close();
+    })
+    .catch((err) => console.error(err));
 });
 cardForm.setEventListeners();
 
 const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
   api
-    .editUserInfo(data)
+    .editUserInfo({ name: data.name, job: data.job })
     .then((res) => (res.ok ? true : res.status))
     .then(() => {
       api
@@ -82,27 +86,44 @@ const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
 });
 profileForm.setEventListeners();
 
+const confirmDeletePopup = new PopupDeleteConfirmation(
+  "form[name='delete-form']"
+);
+confirmDeletePopup.setEventListeners();
+
 const picturePopup = new PopupWithImage(".popup__picture");
 picturePopup.setEventListeners();
 
 /* *********************************** */
 /* Declaration of card gallery section */
 /* *********************************** */
-const cardGallery = new Section(
-  {
-    items: initialCards,
-    renderer: (data) => {
-      const card = new Card(data, ".card-template", (data) => {
-        picturePopup.open(data);
-      });
-      const cardElement = card.generateCard();
-      cardGallery.container.prepend(cardElement);
+const cardGallery = new Section((data) => {
+  const card = new Card(
+    data,
+    ".card-template",
+    (data) => {
+      picturePopup.open(data);
     },
-  },
-  ".gallery__cards"
-);
-
-cardGallery.renderItems();
+    () => {
+      confirmDeletePopup.setSubmitAction(() => {
+        api.deleteCard(data._id);
+        card.deleteCard();
+        confirmDeletePopup.close();
+      });
+      confirmDeletePopup.open();
+    }
+  );
+  const cardElement = card.generateCard();
+  cardGallery.container.prepend(cardElement);
+}, ".gallery__cards");
+api
+  .getCardInfo()
+  .then((res) => (res.ok ? res.json() : res.status))
+  .then((res) => {
+    cardGallery.setItems(res);
+    cardGallery.renderItems();
+  })
+  .catch((err) => console.error(err));
 
 /* ********************************* */
 /* Event listeners for opening forms */

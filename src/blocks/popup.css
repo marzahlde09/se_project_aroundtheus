@@ -47,6 +47,11 @@
   right: -48.28px;
 }
 
+.popup__close-button_type_delete {
+  top: -47px;
+  right: -44.28px;
+}
+
 .popup__close-button_type_picture {
   top: -49px;
   right: -49.57px;
