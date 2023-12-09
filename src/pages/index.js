@@ -9,9 +9,9 @@ import Api from "../components/Api.js";
 import {
   /*initialCards,*/
   formSettings,
-  initialUserData,
   editButton,
   addButton,
+  avatarButton,
   profileFormName,
   profileFormJob,
 } from "../utils/constants.js";
@@ -50,12 +50,18 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__job",
-  avatarSelector: ".profile__avatar",
+  avatarSelector: ".profile__picture",
 });
 
 /* ********************** */
 /* Declarations of popups */
 /* ********************** */
+const avatarForm = new PopupWithForm("form[name='avatar-form']", (data) => {
+  userInfo.setAvatar(data.link);
+  avatarForm.close();
+});
+avatarForm.setEventListeners();
+
 const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
   api
     .addNewCard({ name: data.name, link: data.link })
@@ -140,4 +146,9 @@ editButton.addEventListener("click", function () {
 addButton.addEventListener("click", function () {
   formValidators["card-form"].resetValidation();
   cardForm.open();
+});
+
+avatarButton.addEventListener("click", function () {
+  formValidators["avatar-form"].resetValidation();
+  avatarForm.open();
 });

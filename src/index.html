@@ -79,6 +79,25 @@
           </form>
         </section>
         <section class="popup">
+          <form class="form popup__form" name="avatar-form">
+            <button
+              type="button"
+              class="popup__close-button popup__close-button_type_form"
+            ></button>
+            <h2 class="form__title">Change profile picture</h2>
+            <input
+              type="url"
+              name="link"
+              placeholder="Image Link"
+              value=""
+              class="form__field"
+              required
+            />
+            <span class="form__input-error link-input-error"></span>
+            <button type="submit" class="form__submit">Save</button>
+          </form>
+        </section>
+        <section class="popup">
           <form class="form popup__form" name="card-form">
             <button
               type="button"
@@ -112,7 +131,7 @@
           <form class="form popup__form" name="delete-form">
             <button
               type="button"
-              class="popup__close-button popup__close-button_type_delete"
+              class="popup__close-button popup__close-button_type_form"
             ></button>
             <h2 class="form__title">Are you sure?</h2>
             <button type="submit" class="form__submit">Yes</button>

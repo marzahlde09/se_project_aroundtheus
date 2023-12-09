@@ -41,5 +41,8 @@ export const initialUserData = {
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const addButton = document.querySelector(".profile__add-button");
+export const avatarButton = document.querySelector(
+  ".profile__picture-edit-button"
+);
 export const profileFormName = document.forms["profile-form"].elements["name"];
 export const profileFormJob = document.forms["profile-form"].elements["job"];
