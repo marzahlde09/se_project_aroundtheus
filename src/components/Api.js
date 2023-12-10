@@ -34,6 +34,19 @@ export default class Api {
     });
   }
 
+  editProfilePicture(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    });
+  }
+
   addNewCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
@@ -50,6 +63,24 @@ export default class Api {
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._authorization,
+      },
+    });
+  }
+
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authorization,
+      },
+    });
+  }
+
+  removeLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,

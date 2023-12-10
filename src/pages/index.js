@@ -57,38 +57,50 @@ const userInfo = new UserInfo({
 /* Declarations of popups */
 /* ********************** */
 const avatarForm = new PopupWithForm("form[name='avatar-form']", (data) => {
-  userInfo.setAvatar(data.link);
-  avatarForm.close();
+  avatarForm.submitButton.textContent = "Saving...";
+  api
+    .editProfilePicture(data.link)
+    .then((res) => (res.ok ? true : res.status))
+    .then(() => {
+      userInfo.setAvatar(data.link);
+    })
+    .catch((err) => console.error(err))
+    .finally(() => {
+      avatarForm.submitButton.textContent = "Save";
+      avatarForm.close();
+    });
 });
 avatarForm.setEventListeners();
 
 const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
+  cardForm.submitButton.textContent = "Saving...";
   api
     .addNewCard({ name: data.name, link: data.link })
     .then((res) => (res.ok ? true : res.status))
     .then(() => {
       cardGallery.addItem(data);
-      cardForm.close();
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.error(err))
+    .finally(() => {
+      cardForm.submitButton.textContent = "Create";
+      cardForm.close();
+    });
 });
 cardForm.setEventListeners();
 
 const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
+  profileForm.submitButton.textContent = "Saving...";
   api
     .editUserInfo({ name: data.name, job: data.job })
     .then((res) => (res.ok ? true : res.status))
     .then(() => {
-      api
-        .getUserInfo()
-        .then((res) => (res.ok ? res.json() : res.status))
-        .then((res) => {
-          userInfo.setUserInfo(res);
-        })
-        .catch((err) => console.error(err));
+      userInfo.setUserInfo({ name: data.name, about: data.job });
     })
-    .catch((err) => console.error(err));
-  profileForm.close();
+    .catch((err) => console.error(err))
+    .finally(() => {
+      profileForm.submitButton.textContent = "Save";
+      profileForm.close();
+    });
 });
 profileForm.setEventListeners();
 
@@ -117,19 +129,33 @@ const cardGallery = new Section((data) => {
         confirmDeletePopup.close();
       });
       confirmDeletePopup.open();
+    },
+    () => {
+      const cardLikeIcon = card.card.querySelector(".card__like");
+      if (card.liked) {
+        api
+          .removeLike(data._id)
+          .then((res) => (res.ok ? true : res.status))
+          .then(() => {
+            cardLikeIcon.classList.remove("card__like_active");
+            card.liked = false;
+          })
+          .catch((err) => console.error(err));
+      } else {
+        api
+          .addLike(data._id)
+          .then((res) => (res.ok ? true : res.status))
+          .then(() => {
+            cardLikeIcon.classList.add("card__like_active");
+            card.liked = true;
+          })
+          .catch((err) => console.error(err));
+      }
     }
   );
   const cardElement = card.generateCard();
   cardGallery.container.prepend(cardElement);
 }, ".gallery__cards");
-api
-  .getCardInfo()
-  .then((res) => (res.ok ? res.json() : res.status))
-  .then((res) => {
-    cardGallery.setItems(res);
-    cardGallery.renderItems();
-  })
-  .catch((err) => console.error(err));
 
 /* ********************************* */
 /* Event listeners for opening forms */
@@ -152,3 +178,28 @@ avatarButton.addEventListener("click", function () {
   formValidators["avatar-form"].resetValidation();
   avatarForm.open();
 });
+
+/* ************************* */
+/* Promises for initial data */
+/* ************************* */
+const initialCards = api
+  .getCardInfo()
+  .then((res) => (res.ok ? res.json() : res.status))
+  .then((res) => {
+    cardGallery.setItems(res);
+    cardGallery.renderItems();
+  })
+  .catch((err) => console.error(err));
+
+const initialProfile = api
+  .getUserInfo()
+  .then((res) => (res.ok ? res.json() : res.status))
+  .then((res) => {
+    userInfo.setUserInfo({ name: res.name, about: res.about });
+    userInfo.setAvatar(res.avatar);
+  })
+  .catch((err) => console.error(err));
+
+Promise.all([initialCards, initialProfile])
+  .then((res) => (res.ok ? res.json() : res.status))
+  .catch((err) => console.error(err));
