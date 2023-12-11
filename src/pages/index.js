@@ -76,9 +76,9 @@ const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
   cardForm.submitButton.textContent = "Saving...";
   api
     .addNewCard({ name: data.name, link: data.link })
-    .then((res) => (res.ok ? true : res.status))
-    .then(() => {
-      cardGallery.addItem(data);
+    .then((res) => (res.ok ? res.json() : res.status))
+    .then((res) => {
+      cardGallery.addItem(res);
     })
     .catch((err) => console.error(err))
     .finally(() => {
@@ -134,7 +134,7 @@ const cardGallery = new Section((data) => {
       const cardLikeIcon = card.card.querySelector(".card__like");
       if (card.liked) {
         api
-          .removeLike(data._id)
+          .removeLike(card.id)
           .then((res) => (res.ok ? true : res.status))
           .then(() => {
             cardLikeIcon.classList.remove("card__like_active");
@@ -143,7 +143,7 @@ const cardGallery = new Section((data) => {
           .catch((err) => console.error(err));
       } else {
         api
-          .addLike(data._id)
+          .addLike(card.id)
           .then((res) => (res.ok ? true : res.status))
           .then(() => {
             cardLikeIcon.classList.add("card__like_active");
@@ -154,7 +154,7 @@ const cardGallery = new Section((data) => {
     }
   );
   const cardElement = card.generateCard();
-  cardGallery.container.prepend(cardElement);
+  cardGallery.container.append(cardElement);
 }, ".gallery__cards");
 
 /* ********************************* */
