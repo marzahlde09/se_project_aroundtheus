@@ -8,30 +8,20 @@ export default class Api {
     if (res.ok) {
       return res.json();
     } else {
-      return res.status;
+      return Promise.reject(`Error: ${res.status}`);
     }
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._header,
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 
   getCardInfo() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._header,
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 
   editUserInfo({ name, job }) {
@@ -42,12 +32,7 @@ export default class Api {
         name: name,
         about: job,
       }),
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 
   editProfilePicture(link) {
@@ -57,12 +42,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: link,
       }),
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 
   addNewCard({ name, link }) {
@@ -73,47 +53,27 @@ export default class Api {
         name: name,
         link: link,
       }),
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._header,
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._header,
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 
   removeLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._header,
-    })
-      .then((res) => this._checkResponse(res))
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
+    }).then(this._checkResponse);
   }
 }
