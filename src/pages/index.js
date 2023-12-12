@@ -41,7 +41,10 @@ enableValidation(formSettings);
 /* ************************* */
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  authorization: "a0548a22-3cdf-48eb-9822-7e7daf1b0604",
+  header: {
+    authorization: "a0548a22-3cdf-48eb-9822-7e7daf1b0604",
+    "Content-Type": "application/json",
+  },
 });
 
 /* ****************************** */
@@ -60,14 +63,12 @@ const avatarForm = new PopupWithForm("form[name='avatar-form']", (data) => {
   avatarForm.submitButton.textContent = "Saving...";
   api
     .editProfilePicture(data.link)
-    .then((res) => (res.ok ? true : res.status))
     .then(() => {
       userInfo.setAvatar(data.link);
+      avatarForm.close();
     })
-    .catch((err) => console.error(err))
     .finally(() => {
       avatarForm.submitButton.textContent = "Save";
-      avatarForm.close();
     });
 });
 avatarForm.setEventListeners();
@@ -76,14 +77,12 @@ const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
   cardForm.submitButton.textContent = "Saving...";
   api
     .addNewCard({ name: data.name, link: data.link })
-    .then((res) => (res.ok ? res.json() : res.status))
     .then((res) => {
-      cardGallery.addItem(res);
+      cardGallery.prependItem(res);
+      cardForm.close();
     })
-    .catch((err) => console.error(err))
     .finally(() => {
       cardForm.submitButton.textContent = "Create";
-      cardForm.close();
     });
 });
 cardForm.setEventListeners();
@@ -92,14 +91,12 @@ const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
   profileForm.submitButton.textContent = "Saving...";
   api
     .editUserInfo({ name: data.name, job: data.job })
-    .then((res) => (res.ok ? true : res.status))
     .then(() => {
       userInfo.setUserInfo({ name: data.name, about: data.job });
+      profileForm.close();
     })
-    .catch((err) => console.error(err))
     .finally(() => {
       profileForm.submitButton.textContent = "Save";
-      profileForm.close();
     });
 });
 profileForm.setEventListeners();
@@ -154,7 +151,7 @@ const cardGallery = new Section((data) => {
     }
   );
   const cardElement = card.generateCard();
-  cardGallery.container.append(cardElement);
+  return cardElement;
 }, ".gallery__cards");
 
 /* ********************************* */
@@ -184,7 +181,6 @@ avatarButton.addEventListener("click", function () {
 /* ************************* */
 const initialCards = api
   .getCardInfo()
-  .then((res) => (res.ok ? res.json() : res.status))
   .then((res) => {
     cardGallery.setItems(res);
     cardGallery.renderItems();
@@ -193,7 +189,6 @@ const initialCards = api
 
 const initialProfile = api
   .getUserInfo()
-  .then((res) => (res.ok ? res.json() : res.status))
   .then((res) => {
     userInfo.setUserInfo({ name: res.name, about: res.about });
     userInfo.setAvatar(res.avatar);
