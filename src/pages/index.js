@@ -67,6 +67,7 @@ const avatarForm = new PopupWithForm("form[name='avatar-form']", (data) => {
       userInfo.setAvatar(data.link);
       avatarForm.close();
     })
+    .catch((err) => console.error(err))
     .finally(() => {
       avatarForm.renderLoading(false);
     });
@@ -81,6 +82,7 @@ const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
       cardGallery.prependItem(res);
       cardForm.close();
     })
+    .catch((err) => console.error(err))
     .finally(() => {
       cardForm.renderLoading(false);
     });
@@ -95,6 +97,7 @@ const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
       userInfo.setUserInfo({ name: data.name, about: data.job });
       profileForm.close();
     })
+    .catch((err) => console.error(err))
     .finally(() => {
       profileForm.renderLoading(false);
     });
@@ -117,26 +120,35 @@ const cardGallery = new Section((data) => {
     data,
     ".card-template",
     (data) => {
-      picturePopup.open(data);
+      picturePopup.open({ name: data.name, link: data.link });
     },
     () => {
       confirmDeletePopup.setSubmitAction(() => {
-        api.deleteCard(data._id).then(() => {
-          card.deleteCard();
-          confirmDeletePopup.close();
-        });
+        api
+          .deleteCard(data._id)
+          .then(() => {
+            card.deleteCard();
+            confirmDeletePopup.close();
+          })
+          .catch((err) => console.error(err));
       });
       confirmDeletePopup.open();
     },
     () => {
       if (card.getIsLiked()) {
-        api.removeLike(card.getId()).then(() => {
-          card.removeLike();
-        });
+        api
+          .removeLike(card.getId())
+          .then(() => {
+            card.removeLike();
+          })
+          .catch((err) => console.error(err));
       } else {
-        api.addLike(card.getId()).then(() => {
-          card.addLike();
-        });
+        api
+          .addLike(card.getId())
+          .then(() => {
+            card.addLike();
+          })
+          .catch((err) => console.error(err));
       }
     }
   );
