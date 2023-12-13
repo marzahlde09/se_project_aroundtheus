@@ -8,8 +8,8 @@ export default class Card {
   ) {
     this._name = data.name;
     this._link = data.link;
-    this.liked = data.isLiked;
-    this.id = data._id;
+    this._isLiked = data.isLiked;
+    this._id = data._id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -26,10 +26,10 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this.card.querySelector(".card__delete").addEventListener("click", () => {
+    this._cardTrash.addEventListener("click", () => {
       this._handleDeleteClick();
     });
-    this.card.querySelector(".card__like").addEventListener("click", () => {
+    this._likeIcon.addEventListener("click", () => {
       this._handleLikeClick();
     });
     this._cardImageElement.addEventListener("click", () => {
@@ -37,23 +37,43 @@ export default class Card {
     });
   }
 
+  getId() {
+    return this._id;
+  }
+
+  getIsLiked() {
+    return this._isLiked;
+  }
+
   deleteCard() {
-    this.card.remove();
-    this.card = null;
+    this._card.remove();
+    this._card = null;
+  }
+
+  addLike() {
+    this._likeIcon.classList.add("card__like_active");
+    this._isLiked = true;
+  }
+
+  removeLike() {
+    this._likeIcon.classList.remove("card__like_active");
+    this._isLiked = false;
   }
 
   generateCard() {
-    this.card = this._getTemplate();
-    this._cardImageElement = this.card.querySelector(".card__image");
+    this._card = this._getTemplate();
+    this._cardImageElement = this._card.querySelector(".card__image");
+    this._likeIcon = this._card.querySelector(".card__like");
+    this._cardTrash = this._card.querySelector(".card__delete");
     this._cardImageElement.src = this._link;
     this._cardImageElement.alt = this._name;
-    this.card.querySelector(".card__name").textContent = this._name;
-    if (this.liked) {
-      this.card.querySelector(".card__like").classList.add("card__like_active");
+    this._card.querySelector(".card__name").textContent = this._name;
+    if (this._isLiked) {
+      this._likeIcon.classList.add("card__like_active");
     }
 
     this._setEventListeners();
 
-    return this.card;
+    return this._card;
   }
 }

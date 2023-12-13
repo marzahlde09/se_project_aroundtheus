@@ -60,7 +60,7 @@ const userInfo = new UserInfo({
 /* Declarations of popups */
 /* ********************** */
 const avatarForm = new PopupWithForm("form[name='avatar-form']", (data) => {
-  avatarForm.submitButton.textContent = "Saving...";
+  avatarForm.renderLoading(true);
   api
     .editProfilePicture(data.link)
     .then(() => {
@@ -68,13 +68,13 @@ const avatarForm = new PopupWithForm("form[name='avatar-form']", (data) => {
       avatarForm.close();
     })
     .finally(() => {
-      avatarForm.submitButton.textContent = "Save";
+      avatarForm.renderLoading(false);
     });
 });
 avatarForm.setEventListeners();
 
 const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
-  cardForm.submitButton.textContent = "Saving...";
+  cardForm.renderLoading(true);
   api
     .addNewCard({ name: data.name, link: data.link })
     .then((res) => {
@@ -82,13 +82,13 @@ const cardForm = new PopupWithForm("form[name='card-form']", (data) => {
       cardForm.close();
     })
     .finally(() => {
-      cardForm.submitButton.textContent = "Create";
+      cardForm.renderLoading(false);
     });
 });
 cardForm.setEventListeners();
 
 const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
-  profileForm.submitButton.textContent = "Saving...";
+  profileForm.renderLoading(true);
   api
     .editUserInfo({ name: data.name, job: data.job })
     .then(() => {
@@ -96,7 +96,7 @@ const profileForm = new PopupWithForm("form[name='profile-form']", (data) => {
       profileForm.close();
     })
     .finally(() => {
-      profileForm.submitButton.textContent = "Save";
+      profileForm.renderLoading(false);
     });
 });
 profileForm.setEventListeners();
@@ -121,32 +121,22 @@ const cardGallery = new Section((data) => {
     },
     () => {
       confirmDeletePopup.setSubmitAction(() => {
-        api.deleteCard(data._id);
-        card.deleteCard();
-        confirmDeletePopup.close();
+        api.deleteCard(data._id).then(() => {
+          card.deleteCard();
+          confirmDeletePopup.close();
+        });
       });
       confirmDeletePopup.open();
     },
     () => {
-      const cardLikeIcon = card.card.querySelector(".card__like");
-      if (card.liked) {
-        api
-          .removeLike(card.id)
-          .then((res) => (res.ok ? true : res.status))
-          .then(() => {
-            cardLikeIcon.classList.remove("card__like_active");
-            card.liked = false;
-          })
-          .catch((err) => console.error(err));
+      if (card.getIsLiked()) {
+        api.removeLike(card.getId()).then(() => {
+          card.removeLike();
+        });
       } else {
-        api
-          .addLike(card.id)
-          .then((res) => (res.ok ? true : res.status))
-          .then(() => {
-            cardLikeIcon.classList.add("card__like_active");
-            card.liked = true;
-          })
-          .catch((err) => console.error(err));
+        api.addLike(card.getId()).then(() => {
+          card.addLike();
+        });
       }
     }
   );
@@ -179,22 +169,11 @@ avatarButton.addEventListener("click", function () {
 /* ************************* */
 /* Promises for initial data */
 /* ************************* */
-const initialCards = api
-  .getCardInfo()
-  .then((res) => {
-    cardGallery.setItems(res);
+Promise.all([api.getUserInfo(), api.getCardInfo()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo({ name: userData.name, about: userData.about });
+    userInfo.setAvatar(userData.avatar);
+    cardGallery.setItems(cards);
     cardGallery.renderItems();
   })
-  .catch((err) => console.error(err));
-
-const initialProfile = api
-  .getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo({ name: res.name, about: res.about });
-    userInfo.setAvatar(res.avatar);
-  })
-  .catch((err) => console.error(err));
-
-Promise.all([initialCards, initialProfile])
-  .then((res) => (res.ok ? res.json() : res.status))
   .catch((err) => console.error(err));
