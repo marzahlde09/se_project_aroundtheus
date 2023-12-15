@@ -29,12 +29,12 @@ Around the U.S. is a responsive web page that displays a gallery of photos. The 
 
 Display changes the profile and has one card on each row for a phone screen (800px or less)
 
-![phone-screen](https://postimg.cc/R646QtCv)
+[![phone-screen.png](https://i.postimg.cc/Y9m67NJL/phone-screen.png)](https://postimg.cc/R646QtCv)
 
 Display has two cards on each row for certain screen sizes
 
-![tablet](https://postimg.cc/N9DyN0Lm)
+[![tablet.png](https://i.postimg.cc/sxdpgQr6/tablet.png)](https://postimg.cc/N9DyN0Lm)
 
 Display has three cards on each row for larger screens
 
-![typical-screen](https://postimg.cc/sG2MbRZ8)
+[![typical-screen.png](https://i.postimg.cc/0jY7Mk58/typical-screen.png)](https://postimg.cc/sG2MbRZ8)
