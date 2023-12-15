@@ -26,11 +26,14 @@
       </header>
       <main>
         <section class="profile page__profile">
-          <img
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="Jacques Cousteau portrait"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar">
+            <img
+              src="<%=require('./images/jacques-cousteau.png')%>"
+              alt="Jacques Cousteau portrait"
+              class="profile__picture"
+            />
+            <button class="profile__picture-edit-button" type="button"></button>
+          </div>
           <div class="profile__info">
             <div class="profile__header">
               <h1 class="profile__name">Jacques Cousteau</h1>
@@ -76,6 +79,25 @@
           </form>
         </section>
         <section class="popup">
+          <form class="form popup__form" name="avatar-form">
+            <button
+              type="button"
+              class="popup__close-button popup__close-button_type_form"
+            ></button>
+            <h2 class="form__title">Change profile picture</h2>
+            <input
+              type="url"
+              name="link"
+              placeholder="Image Link"
+              value=""
+              class="form__field"
+              required
+            />
+            <span class="form__input-error link-input-error"></span>
+            <button type="submit" class="form__submit">Save</button>
+          </form>
+        </section>
+        <section class="popup">
           <form class="form popup__form" name="card-form">
             <button
               type="button"
@@ -103,6 +125,16 @@
             />
             <span class="form__input-error link-input-error"></span>
             <button type="submit" class="form__submit">Create</button>
+          </form>
+        </section>
+        <section class="popup">
+          <form class="form popup__form" name="delete-form">
+            <button
+              type="button"
+              class="popup__close-button popup__close-button_type_form"
+            ></button>
+            <h2 class="form__title">Are you sure?</h2>
+            <button type="submit" class="form__submit">Yes</button>
           </form>
         </section>
         <section class="popup">

@@ -14,6 +14,39 @@
   border-radius: 50%;
   width: 120px;
   height: 120px;
+  position: relative;
+  display: flex;
+}
+
+.profile__picture {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile__picture-edit-button {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  background-image: url("../images/edit-symbol.svg");
+  background-size: 26px 26px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.4s, opacity 0.4s linear;
+  cursor: pointer;
+}
+
+.profile__avatar:hover .profile__picture-edit-button {
+  visibility: visible;
+  opacity: 1;
 }
 
 .profile__info {
